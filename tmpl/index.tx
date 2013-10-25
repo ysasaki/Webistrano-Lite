@@ -1,0 +1,53 @@
+: cascade "include/layout.tx"
+
+: override content -> {
+
+<style>
+    .text-large {
+        font-weight: bold;
+        font-size: 28px;
+    }
+    .console-head {
+        margin-bottom: 10px;
+    }
+    div.row {
+        margin-bottom: 20px;
+    }
+</style>
+<div class="row">
+    <div class="col-lg-4">
+        <span class="text-large text-primary">Select a stage and a task: </span>
+    </div>
+    <form id="select_task" action="" method="POST" role="form" class="col-lg-20 form-inline">
+        <div class="form-group">
+            <select id="input_stage" name="stage" class="form-control input-lg">
+: while $stages.next -> $stage {
+                <option value="<: $stage.name :>"><: $stage.name :></option>
+: }
+            </select>
+        </div>
+        <div class="form-group">
+            <select id="input_task" name="task" class="form-control input-lg">
+: while $tasks.next -> $task {
+                <option value="<: $task.name :>"><: $task.name :></option>
+: }
+            </select>
+        </div>
+        <div class="form-group">
+            <input id="run_task" type="button" value="Run" class="btn btn-primary input-lg">
+        </div>
+    </form>
+</div>
+<div class="row">
+    <div class="col-lg-4">
+        <span class="text-large text-primary">Current status: </span>
+        <span id="current_status" class="text-large">None</span>
+    </div>
+</div>
+</div>
+    <div class="text-large text-primary console-head">Console log: </div>
+    <div class="col-lg-24">
+        <pre id="console">cap staging deploy:all...</pre>
+    </div>
+</div>
+: }
