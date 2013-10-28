@@ -16,6 +16,7 @@ requires 'Router::Boom', '0.06';
 requires 'Server::Starter';
 requires 'Twiggy', '0.1024';
 requires 'Teng', '0.20';
+requires 'Term::ANSIColor', '4.02';
 requires 'Test::WWW::Mechanize::PSGI';
 requires 'Text::Xslate', '2.0009';
 requires 'Time::Piece', '1.20';

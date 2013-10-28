@@ -6,6 +6,7 @@ use Amon2::Web::Dispatcher::RouterBoom;
 use AnyEvent;
 use AnyEvent::Util qw(run_cmd fork_call);
 use Log::Minimal;
+use Term::ANSIColor qw(colorstrip);
 
 any '/' => sub {
     my ($c) = @_;
@@ -65,7 +66,7 @@ EOM
                 '>' => sub {
                 my ($data) = @_;
                 if ( defined $data ) {
-                    $writer->write($data);
+                    $writer->write(colorstrip($data));
                 }
                 };
 
