@@ -12,6 +12,7 @@ requires 'Plack::Middleware::Session';
 requires 'Plack::Middleware::Assets::RailsLike', '0.13';
 requires 'Plack::Session', '0.14';
 requires 'Router::Boom', '0.06';
+requires 'Server::Starter';
 requires 'Twiggy', '0.1024';
 requires 'Teng', '0.20';
 requires 'Test::WWW::Mechanize::PSGI';
