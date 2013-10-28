@@ -1,0 +1,6 @@
+Revision history for Perl extension Webistrano::Lite
+
+{{$NEXT}}
+    - Implementes basic features.
+    - Supports additional environment variables when exec capistrano command.
+    - Strips ansi color code from response data.

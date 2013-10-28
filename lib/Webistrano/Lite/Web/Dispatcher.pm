@@ -49,13 +49,13 @@ post '/console' => sub {
 
             # Exec a shell command
             my @binds = (
-                $cap_config->{PATH}, $env,
+                $env,
                 $cap_config->{project_dir},
                 $req->param('stage'),
                 $req->param('task')
             );
             my $cmd = sprintf( <<EOM, @binds );
-env - PATH=%s %s sh -c '
+env - %s sh -c '
 exec 2>&1
 cd %s
 ./bin/cap %s %s'

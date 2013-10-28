@@ -10,9 +10,10 @@ my $dbpath = catfile($basedir, 'db', 'development.db');
         }
     ],
     'capistrano' => {
-        PATH => '/Users/ysasaki/.rbenv/shims:/usr/local/bin:/usr/bin:/bin',
-        project_dir => "/tmp/my-project", # cap must be installed by 'gem install --binstubs'
+        # cap must be installed by 'gem install --binstubs'
+        project_dir => "/tmp/my-project",
         env => {
+            PATH => '/Users/ysasaki/.rbenv/shims:/usr/local/bin:/usr/bin:/bin',
             ENVS_YOU_NEED  => 'FOOBAR',
         }
     }

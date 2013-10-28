@@ -28,7 +28,7 @@ __END__
 
 =head1 NAME
 
-Webistrano::Lite - Webistrano::Lite
+Webistrano::Lite - Yet Another Web Interface for Capistrano
 
 =head1 DESCRIPTION
 
@@ -36,5 +36,9 @@ This is a main context class for Webistrano::Lite
 
 =head1 AUTHOR
 
-Webistrano::Lite authors.
+Yoshihiro Sasaki E<lt>ysasaki@cpan.rogE<gt>
+
+=head1 LICENSE
+
+This library is free software; you can redistribute it and/or modify it under the same terms as Perl itself.
 

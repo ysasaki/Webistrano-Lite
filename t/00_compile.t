@@ -8,7 +8,7 @@ use Webistrano::Lite::Web;
 use Webistrano::Lite::Web::View;
 use Webistrano::Lite::Web::ViewFunctions;
 
-use Webistrano::Lite::DB::Schema;
+use Webistrano::Lite::Schema;
 use Webistrano::Lite::Web::Dispatcher;
 
 
