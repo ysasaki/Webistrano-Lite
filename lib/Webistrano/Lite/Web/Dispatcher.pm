@@ -39,13 +39,22 @@ post '/console' => sub {
                 ]
             );
 
+            my $env = "";
+            if ( exists $cap_config->{env} ) {
+                $env =
+                  join " ", map { "$_=$cap_config->{env}->{$_}" }
+                  keys %{ $cap_config->{env} };
+            }
+
             # Exec a shell command
             my @binds = (
-                $cap_config->{PATH},  $cap_config->{project_dir},
-                $req->param('stage'), $req->param('task')
+                $cap_config->{PATH}, $env,
+                $cap_config->{project_dir},
+                $req->param('stage'),
+                $req->param('task')
             );
             my $cmd = sprintf( <<EOM, @binds );
-env - PATH=%s TERM=xterm sh -c '
+env - PATH=%s %s sh -c '
 exec 2>&1
 cd %s
 ./bin/cap %s %s'
