@@ -2,7 +2,7 @@ requires 'Amon2', '5.11';
 requires 'AnyEvent';
 requires 'AnyEvent::Run';
 requires 'DBD::SQLite', '1.33';
-requires 'DBIx::Schmae::DSL', '0.08';
+requires 'DBIx::Schema::DSL', '0.08';
 requires 'EV';
 requires 'HTML::FillInForm::Lite', '1.11';
 requires 'JSON', '2.50';
