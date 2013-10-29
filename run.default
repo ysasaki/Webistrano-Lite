@@ -1,0 +1,20 @@
+#!/bin/bash
+# Rename run.default run and edit some parameters
+# sudo nohup ./run &
+
+exec 2>&1
+
+exec \
+env - PATH=./local/bin:/opt/perl-5.18/bin:$PATH PERL5LIB=local/lib/perl5 \
+carton exec \
+-- \
+start_server \
+--pid-file=/var/run/webistrano-lite.pid \
+--status-file=/var/run/webistrano-lite.status \
+--port 80 \
+-- \
+plackup \
+-a script/webistrano-lite-server \
+-s Twiggy \
+-E development \
+--access_log /var/log/webistrano-lite_log
