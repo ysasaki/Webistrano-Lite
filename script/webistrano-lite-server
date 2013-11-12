@@ -17,36 +17,38 @@ my $session_dir = catdir(tmpdir, uri_escape("Webistrano::Lite") . "-$<" );
 File::Path::mkpath($session_dir);
 my $project_root_dir = catdir(dirname(__FILE__), '..');
 my $app = builder {
-    enable 'Plack::Middleware::Static',
-        path => qr{^(?:/static/)},
-        root => catdir($project_root_dir);
-    enable 'Plack::Middleware::Static',
-        path => qr{^(?:/robots\.txt|/favicon\.ico)$},
-        root => catdir($project_root_dir, 'static');
-    enable 'Plack::Middleware::Assets::RailsLike',
-        root => catdir($project_root_dir),
-        search_path => [
-            map { catdir($project_root_dir, @$_) } ( 
-                [qw(static js)],
-                [qw(static bootstrap js)],
-                [qw(static socket.io)],
-                [qw(static css)],
-                [qw(static bootstrap css)],
-            )
-        ],
-        minify => 0; # TODO
+    mount '/webistrano' => builder {
+        enable 'Plack::Middleware::Static',
+            path => qr{^(?:/static/)},
+            root => catdir($project_root_dir);
+        enable 'Plack::Middleware::Static',
+            path => qr{^(?:/robots\.txt|/favicon\.ico)$},
+            root => catdir($project_root_dir, 'static');
+        enable 'Plack::Middleware::Assets::RailsLike',
+            root => catdir($project_root_dir),
+            search_path => [
+                map { catdir($project_root_dir, @$_) } ( 
+                    [qw(static js)],
+                    [qw(static bootstrap js)],
+                    [qw(static socket.io)],
+                    [qw(static css)],
+                    [qw(static bootstrap css)],
+                )
+            ],
+            minify => 0; # TODO
 
-    # If you want to run the app on multiple servers,
-    # you need to use Plack::Sesion::Store::DBI or ::Store::Cache.
-    enable 'Plack::Middleware::Session',
-        store => Plack::Session::Store::File->new(
-            dir => $session_dir,
-        ),
-        state => Plack::Session::State::Cookie->new(
-            httponly => 1,
-        );
+        # If you want to run the app on multiple servers,
+        # you need to use Plack::Sesion::Store::DBI or ::Store::Cache.
+        enable 'Plack::Middleware::Session',
+            store => Plack::Session::Store::File->new(
+                dir => $session_dir,
+            ),
+            state => Plack::Session::State::Cookie->new(
+                httponly => 1,
+            );
 
-    Webistrano::Lite::Web->to_app();
+        Webistrano::Lite::Web->to_app();
+    };
 };
 unless (caller) {
     my $port        = 5000;

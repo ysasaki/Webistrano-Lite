@@ -11,7 +11,7 @@ carton exec \
 start_server \
 --pid-file=/var/run/webistrano-lite.pid \
 --status-file=/var/run/webistrano-lite.status \
---port 80 \
+--port 10080 \
 -- \
 plackup \
 -a script/webistrano-lite-server \

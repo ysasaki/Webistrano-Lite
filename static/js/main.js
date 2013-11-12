@@ -32,7 +32,7 @@ $(function () {
         var last_pos = 0;
 
         $.ajax({
-            url: '/console',
+            url: '/webistrano/console',
             type: 'post',
             data: $form.serialize(),
             xhrFields: {
